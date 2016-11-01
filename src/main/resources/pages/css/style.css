@@ -8,7 +8,7 @@
 
 @media(max-width:800px){
 .logo img{
-    content:url("../images/cp_logo_mini.jpg");
+    content:url("http://localhost:8080/test1/pages/images/cp_logo_mini.jpg");
 	width:60px;
   }
 }
@@ -16,7 +16,7 @@
 
 @media(max-width:400px){
 .logo img{
-    content:url("../images/cp_logo_mini.jpg");
+    content:url("http://localhost:8080/test1/pages/images/cp_logo_mini.jpg");
 	width:50px;
   }
 }

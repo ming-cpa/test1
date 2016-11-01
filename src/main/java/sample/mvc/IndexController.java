@@ -49,6 +49,8 @@ public class IndexController {
 	@Autowired
 	private Environment env;
 	
+	@Value("${spring.redis.host}")
+	private String redishost;
 	@Value("${server.session.timeout}")
 	private int sessiontimeout;
 	@Value("${server.name}")
@@ -57,8 +59,7 @@ public class IndexController {
 	@RequestMapping("/")
 	public String index(HttpServletRequest request) {
 		request.setAttribute("servername", servername);	
-		System.out.println(request.getContextPath());
-		System.out.println("+++ Env :  " + env.getProperty("server.session.timeout"));
+		System.out.println("+++ Class path: " + request.getContextPath() + "  +++ Redis Env :  " + redishost);
 		
 		return "index";
 	}
