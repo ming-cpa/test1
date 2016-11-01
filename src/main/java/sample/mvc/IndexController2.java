@@ -19,7 +19,7 @@ public class IndexController2 {
 	@Value("${server.name}")
 	private String servername;
 	
-	@RequestMapping("/")
+	@RequestMapping("/11")
 	public String index(HttpServletRequest request) {
 
 		request.setAttribute("servername", servername);	

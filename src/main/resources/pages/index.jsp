@@ -9,8 +9,8 @@
 </head>
 <body>
 <%-- <c:out value="${pageContext.session.id}"/> --%>
-	<!-- <form action="/welcome"> -->
-	<form>
+<form action="/test1/welcome">
+	
 		<h1>This is <c:out value="${servername}"/></h1>
 		<h1>This is <%=request.getAttribute("servername") %></h1>
 		

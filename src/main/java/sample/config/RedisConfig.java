@@ -1,31 +1,31 @@
 package sample.config;
 
-import java.util.HashMap;
-import java.util.Map;
+import sample.model.EnvConf;
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.support.GenericApplicationContext;
 import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.core.env.Environment;
-import org.springframework.core.env.MutablePropertySources;
-import org.springframework.core.env.StandardEnvironment;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.serializer.JdkSerializationRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
+import org.springframework.web.client.RestTemplate;
+import redis.clients.jedis.JedisShardInfo;
+
+
+/*
+
 import org.springframework.vault.authentication.TokenAuthentication;
 import org.springframework.vault.client.VaultClient;
 import org.springframework.vault.client.VaultEndpoint;
 import org.springframework.vault.core.VaultTemplate;
 import org.springframework.vault.support.VaultResponseSupport;
-import org.springframework.web.client.RestTemplate;
-import org.springframework.core.env.MapPropertySource;
 
-import redis.clients.jedis.JedisShardInfo;
-import sample.model.EnvConf;
+*/
 
 @Configuration
 public class RedisConfig {
@@ -40,11 +40,27 @@ public class RedisConfig {
 
 	@Value("${spring.vault.port}")
 	private int vport;
+	
+	@Value("${spring.redis.host}")
+	private String rhost;
+
+	@Value("${spring.redis.port}")
+	private int rport;
+	
+	@Value("${spring.redis.password}")
+	private String rpwd;
 
 	@Bean
 	public JedisConnectionFactory jedisConnectionFactory() {
 
-		// Vault configuration
+		EnvConf eConf = new EnvConf();
+		eConf.setRhost(rhost);
+		eConf.setRport(rport);
+		eConf.setRpwd(rpwd);
+		
+		/* comment out Vault for testing
+		 * 
+		 *  // Vault configuration
 		VaultEndpoint vEndpoint = new VaultEndpoint();
 		vEndpoint.setScheme(vschema);
 		vEndpoint.setHost(vhost);
@@ -57,6 +73,8 @@ public class RedisConfig {
 				EnvConf.class);
 		EnvConf eConf = (EnvConf) response.getData();
 		System.out.println("+++ Vault test :" + eConf.getRhost());
+		
+		*/
 
 		JedisConnectionFactory jedis = new JedisConnectionFactory();
 		jedis.setHostName(eConf.getRhost());
