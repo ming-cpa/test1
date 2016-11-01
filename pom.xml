@@ -5,7 +5,7 @@
 	<artifactId>test1</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>test1 Maven Webapp</name>
-
+	<packaging>war</packaging>
 	
 	<parent>
 		<groupId>org.springframework.boot</groupId>
