@@ -24,7 +24,8 @@ public class IndexController2 {
 
 		request.setAttribute("servername", servername);	
 		
-		System.out.println("+++ index  ");
+		System.out.println("+++ index  " + servername + " timeout=" + sessiontimeout);
+		
 		
 		return "index";
 	}

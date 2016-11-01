@@ -12,6 +12,8 @@
 	<!-- <form action="/welcome"> -->
 	<form>
 		<h1>This is <c:out value="${servername}"/></h1>
+		<h1>This is <%=request.getAttribute("servername") %></h1>
+		
 		input：<input type="text" name="userName" /> <input type="submit"
 			value="submit" /> <br />
 	</form>
