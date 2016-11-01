@@ -9,7 +9,8 @@
 </head>
 <body>
 <%-- <c:out value="${pageContext.session.id}"/> --%>
-	<form action="/welcome">
+	<!-- <form action="/welcome"> -->
+	<form>
 		<h1>This is <c:out value="${servername}"/></h1>
 		input：<input type="text" name="userName" /> <input type="submit"
 			value="submit" /> <br />
