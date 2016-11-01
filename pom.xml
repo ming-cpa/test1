@@ -2,7 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.web</groupId>
-	<artifactId>test3</artifactId>
+	<artifactId>test1</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>test1 Maven Webapp</name>
 
