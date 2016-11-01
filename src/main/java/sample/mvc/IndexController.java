@@ -16,8 +16,6 @@
 
 package sample.mvc;
 
-
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +34,7 @@ import sample.service.RedisService;
 
 @Controller
 public class IndexController {
-	
+
 	@Autowired
 	private HelloWorldService helloWorldService;
 
@@ -48,19 +46,22 @@ public class IndexController {
 
 	@Autowired
 	private Environment env;
-	
+
 	@Value("${spring.redis.host}")
 	private String redishost;
+	@Value("${spring.redis.port}")
+	private int redisport;
 	@Value("${server.session.timeout}")
 	private int sessiontimeout;
 	@Value("${server.name}")
 	private String servername;
-	
+
 	@RequestMapping("/")
 	public String index(HttpServletRequest request) {
-		request.setAttribute("servername", servername);	
-		System.out.println("+++ Class path: " + request.getContextPath() + "  +++ Redis Env :  " + redishost);
-		
+		request.setAttribute("servername", servername);
+		System.out.println("++ Path: " + request.getContextPath()
+				+ " Redis Env't :" + redishost + " : " + redisport);
+
 		return "index";
 	}
 
@@ -71,14 +72,15 @@ public class IndexController {
 		String newUserName = helloWorldService.getNewName(userName);
 		String sessionid = request.getSession().getId();
 		String redisStatus = redisService.ping();
-   
+
 		System.out.println("Login user: " + userName + ", Session: "
 				+ sessionid);
 
 		User usr;
 		String msg;
 		if (redisService.existsByteKey(userName)) {
-			System.out.println(userName + " already login, get User from Redis");
+			System.out
+					.println(userName + " already login, get User from Redis");
 			usr = (User) stringSerializer.deserialize(redisService
 					.getSerializedObject(userName));
 			msg = usr.getUsername() + " already logged in at " + usr.getLtime();
@@ -92,11 +94,9 @@ public class IndexController {
 		request.setAttribute("usr", usr);
 		request.setAttribute("redisStatus", redisStatus);
 		request.setAttribute("msg", msg);
-		request.setAttribute("servername", servername);	
-		
+		request.setAttribute("servername", servername);
+
 		return "welcome";
 	}
-	
-	
-	
+
 }
