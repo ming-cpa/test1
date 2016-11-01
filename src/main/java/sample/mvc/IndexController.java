@@ -57,7 +57,7 @@ public class IndexController {
 	@RequestMapping("/")
 	public String index(HttpServletRequest request) {
 		request.setAttribute("servername", servername);	
-		
+		System.out.println(request.getContextPath());
 		System.out.println("+++ Env :  " + env.getProperty("server.session.timeout"));
 		
 		return "index";
